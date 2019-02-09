@@ -9,6 +9,9 @@
 # production
 /build
 
+# scratchpad
+.scratchpad.re
+
 # bucklescript
 /lib
 /types
