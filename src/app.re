@@ -78,7 +78,27 @@ let make = (_children) => {
   initialState: _state => Loading,
   reducer: (action, _state) =>
     switch (action) {
-    | ActivitiesFetch => ReasonReact.Update(Loaded([|test_json|]))
+    | ActivitiesFetch => 
+    ReasonReact.UpdateWithSideEffects(
+        Loading,
+        (
+          self =>
+            Js.Promise.(
+              fetchActivities()
+              |> then_(activities =>
+                  activities
+                  |> (activities => self.send(ActivitiesFetched(activities)))
+                  |> resolve
+              )
+              |> catch(_err =>
+                   Js.Promise.resolve(self.send(ActivitiesFailedToFetch))
+                 )
+              |> ignore
+            )
+        ),
+      )
+
+
     | ActivitiesFetched(activities) => ReasonReact.Update(Loaded(activities))
     | ActivitiesFailedToFetch => ReasonReact.Update(Error)
     },
