@@ -7,3 +7,9 @@ type t =
   };
 
 type activities = array(t);
+
+let decodeActivity : Js.Json.t => t
+
+let fetchActivities : unit => Js.Promise.t(array(t))
+
+

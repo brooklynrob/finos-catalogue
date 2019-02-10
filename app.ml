@@ -34,7 +34,6 @@ let list_to_set l =
 let array_to_set arr =
 Array.fold_left (fun a e -> if Array.mem e a then a else Array.append [|e|] a) [||] arr;;
 
-
 let create_program_list (activities:activities) : programs =
   let array_of_programs =
     Array.map

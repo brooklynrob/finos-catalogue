@@ -1,0 +1,1 @@
+let activities_json_url = "http://finos.github.io/activities.json";
