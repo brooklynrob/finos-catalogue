@@ -11,4 +11,6 @@ ReactDOMRe.renderToElementWithId(
   "activities",
 );
 
+
+
 unregister_service_worker();

@@ -30,3 +30,15 @@ let fetchActivities = () =>
       )
   );
 
+let filter_activities_by_program =
+  (prog_lst: option(list(string)), activities: list(t)) =>
+  switch (prog_lst) {
+  | None => activities
+  | Some(prog_lst) =>
+    List.filter(
+      activity => List.mem(activity.program_short_name, prog_lst),
+      activities,
+    ) 
+  };
+  
+

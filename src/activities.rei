@@ -12,4 +12,6 @@ let decodeActivity : Js.Json.t => t
 
 let fetchActivities : unit => Js.Promise.t(array(t))
 
+let filter_activities_by_program: (option(list(string)), list(t)) => list(t)
+
 

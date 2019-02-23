@@ -7,11 +7,11 @@ module ActivityTable = {
     <div className="row">
       <div className="col s12 board">
         <table id="simple-board" className="table table-striped table-sm">
-        <tbody><tr>
-        <th>(Utils.str("Program Name"))</th>
-        <th>(Utils.str("Program Short Name"))</th>
-        <th>(Utils.str("Program URL"))</th>
-        <th>(Utils.str("Activity Name"))</th>
+        <tbody>
+          <tr>
+            <th>(Utils.str("Type"))</th>
+            <th>(Utils.str("Name"))</th>
+            <th>(Utils.str("Program"))</th>
       </tr>
       {rows}
       </tbody>
@@ -29,10 +29,18 @@ module ActivityRow = {
     ...component,
     render: _self => 
         <tr>
-          <td> (Utils.str(activity.program_name)) </td>
-          <td> (Utils.str(activity.program_short_name)) </td>
-          <td> (Utils.str(activity.program_homepage)) </td>
+        /* To Do: Add function that masks abbrev is same name */
+          <td>(Utils.str("Working"))</td>
           <td> (Utils.str(activity.activity_name)) </td>
+          <td>
+            <a href=activity.program_homepage>
+              {(Utils.str((activity.program_name) 
+                ++ " ("
+                ++ activity.program_short_name
+                ++ ")"
+                ))}
+            </a>
+          </td>
         </tr>
   };
 };

@@ -7,6 +7,8 @@ type activity = {
 
 type activities = activity array;;
 
+type activities_lst = activity list;;
+
 type program = {
   program_name: string;
   program_short_name: string;
@@ -16,13 +18,13 @@ type program = {
 type programs = program list;;
 
 let activity_array = [|
-{program_name = "Program Name Test";
-program_short_name = "Program Short";
+{program_name = "FDC3";
+program_short_name = "FDC3";
 program_homepage = "http://";
 activity_name = "A workgroup test"
 };
-{program_name = "Program Name Test";
-program_short_name = "Program Short";
+{program_name = "FO";
+program_short_name = "FO";
 program_homepage = "http://";
 activity_name = "A workgroup test"
 }
@@ -45,3 +47,23 @@ let create_program_list (activities:activities) : programs =
         })
     activities in
   list_to_set (Array.to_list array_of_programs);;
+
+
+let filter_activites (programs:string list option) (activities:activity list) = function
+| None -> activities
+| Some programs-> [{program_name = "Program Name Test";
+program_short_name = "Program Short";
+program_homepage = "http://";
+activity_name = "A workgroup test"
+}];;
+
+let filter_activites (programs:string list option) (activities:activity_lst) = function
+| None -> activities
+| Some programs-> List.filter (fun activity -> List.mem activity.program_short_name programs) activities;;
+
+
+[{program_name = "Program Name Test";
+program_short_name = "Program Short";
+program_homepage = "http://";
+activity_name = "A workgroup test"
+}];;

@@ -27,7 +27,10 @@ let make = (_children) => {
               Activities.fetchActivities()
               |> then_(activities =>
                   activities
-                  |> (activities => self.send(ActivitiesFetched(activities)))
+                  |> (activities => Array.to_list(activities))
+                  |> (activities_lst => Activities.filter_activities_by_program(Some(["FDC3","Hadouken"]),activities_lst))
+                  |> (filtered_activities_list => Array.of_list(filtered_activities_list))
+                  |> (filtered_activities_activities_array => self.send(ActivitiesFetched(filtered_activities_activities_array)))
                   |> resolve
               )
               |> catch(_err =>
@@ -42,7 +45,7 @@ let make = (_children) => {
     },
   didMount: self => self.send(ActivitiesFetch),
 
-  render: (self) => {
+  render: self => {
     let rows = switch self.state {
     | Loading => <div>(Utils.str("Loading..."))</div>
     | Error => <div>(Utils.str("Sorry. Unable to load Activities"))</div>
@@ -56,6 +59,11 @@ let make = (_children) => {
         )
       )
     };  
-      <Uielements.ActivityTable rows={rows} />  
+    <div>
+    <Filter name="Toshi" />
+    <Uielements.ActivityTable rows={rows} />
+    </div>
+  
+    
   }
 };
