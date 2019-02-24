@@ -21,3 +21,13 @@ let create_program_list = (activities:Activities.activities) : programs => {
   Js.log (array_of_programs);
   Utils.list_to_set(Array.to_list(array_of_programs));
 }; 
+
+let programs_short_list_names = programs => {
+  List.fold_left(
+    (acc, program) => [program.program_short_name, ...acc],
+    [],
+    programs,
+  )
+};
+
+

@@ -13,13 +13,13 @@ type action =
   | ActivitiesFailedToFetch;
 
 let component = ReasonReact.reducerComponent("App");
-let make = (_children) => {
+let make = (~program_list_to_filter=?,_children) => {
   ...component,
   initialState: _state => Loading,
   reducer: (action, _state) =>
     switch (action) {
     | ActivitiesFetch => 
-    ReasonReact.UpdateWithSideEffects(
+      ReasonReact.UpdateWithSideEffects(
         Loading,
         (
           self =>
@@ -47,10 +47,19 @@ let make = (_children) => {
       | Loading => {<div><ActivityTable msg="Loading Data" /></div>}
       | Error => <div><ActivityTable msg="Error. Could not load data." /></div>
       | Loaded(activities) => 
-          let program_list = Programs.create_program_list(activities);
+          let all_programs_list = Programs.create_program_list(activities);
+          let filtered_programs_list = 
+            switch (program_list_to_filter) {
+              | None => all_programs_list
+              | Some(program_list_to_filter) => program_list_to_filter
+            };
           <div>
-            <div><Filter program_list=program_list /></div>
-            <div><ActivityTable activities=activities filtered_programs=["FDC3","FDX"]/></div>
+            <div><Filter program_list=all_programs_list /></div>
+            <div><ActivityTable
+              activities=activities
+              filtered_programs=Programs.programs_short_list_names(filtered_programs_list)
+              />
+            </div>
           </div>
     };
   }
