@@ -27,10 +27,7 @@ let make = (_children) => {
               Activities.fetchActivities()
               |> then_(activities =>
                   activities
-                  |> (activities => Array.to_list(activities))
-                  |> (activities_lst => Activities.filter_activities_by_program(Some(["FDC3","Hadouken"]),activities_lst))
-                  |> (filtered_activities_list => Array.of_list(filtered_activities_list))
-                  |> (filtered_activities_activities_array => self.send(ActivitiesFetched(filtered_activities_activities_array)))
+                  |> (activities => self.send(ActivitiesFetched(activities)))
                   |> resolve
               )
               |> catch(_err =>
@@ -46,24 +43,15 @@ let make = (_children) => {
   didMount: self => self.send(ActivitiesFetch),
 
   render: self => {
-    let rows = switch self.state {
-    | Loading => <div>(Utils.str("Loading..."))</div>
-    | Error => <div>(Utils.str("Sorry. Unable to load Activities"))</div>
-    | Loaded(activities) => 
-        Js.log("The list of programs is:")
-        Js.log(Programs.create_program_list(activities)); 
-        ReasonReact.array(
-        Array.map(
-          (activity: Activities.t) => <Uielements.ActivityRow activity=activity />,
-          activities
-        )
-      )
-    };  
-    <div>
-    <Filter name="Toshi" />
-    <Uielements.ActivityTable rows={rows} />
-    </div>
-  
-    
+    switch self.state {
+      | Loading => {<div><ActivityTable msg="Loading Data" /></div>}
+      | Error => <div><ActivityTable msg="Error. Could not load data." /></div>
+      | Loaded(activities) => 
+          let program_list = Programs.create_program_list(activities);
+          <div>
+            <div><Filter program_list=program_list /></div>
+            <div><ActivityTable activities=activities filtered_programs=["FDC3","FDX"]/></div>
+          </div>
+    };
   }
 };
