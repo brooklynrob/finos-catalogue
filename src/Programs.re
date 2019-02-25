@@ -30,8 +30,8 @@ let filter_programs = programs => {
 
 let filtered_programs_short_list_names = programs => {
   let filtered_programs = filter_programs(programs);
-  Js.log("filtered_programs in filtered_programs_short_list_names is \n");
-  Js.log(filtered_programs);
+  /* Js.log("filtered_programs in filtered_programs_short_list_names is \n");
+  Js.log(filtered_programs); */
   List.fold_left(
     (acc, program) => [program.program_short_name, ...acc],
     [],

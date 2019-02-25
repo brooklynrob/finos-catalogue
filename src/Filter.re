@@ -13,8 +13,8 @@ let make = (~programs, ~activities, _children) => {
     switch (action) {
     | Toggle_program(program_to_toggle) =>
 
-      Js.log("program_to_toggle is:\n");
-      Js.log(program_to_toggle);
+      /* Js.log("program_to_toggle is:\n");
+      Js.log(program_to_toggle); */
 
       let filtered_programs = List.map(
         program =>
@@ -26,8 +26,8 @@ let make = (~programs, ~activities, _children) => {
           },
         state,
       );
-      Js.log("The filtered programs are:\n");
-      Js.log(filtered_programs);
+      /* Js.log("The filtered programs are:\n");
+      Js.log(filtered_programs); */
       ReasonReact.Update(filtered_programs)
   },
 

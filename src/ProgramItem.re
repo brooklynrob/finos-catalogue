@@ -6,10 +6,10 @@ let component = ReasonReact.statelessComponent("ProgramItem");
 let make = (~program, ~onToggle, _children) => {
   ...component,
   render: _self => {
-    Js.log("Checked is ...");
+    /* Js.log("Checked is ...");
     Js.log(program.checked);
     Js.log("program is ...");
-    Js.log(program);
+    Js.log(program); */
     <div className = "view">
       <input
         className="toggle"
