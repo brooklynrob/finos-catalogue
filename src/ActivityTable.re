@@ -8,6 +8,8 @@ let make = (~activities=?, ~filtered_programs=?, ~msg="Could not load data", _ch
   switch (activities) {
     | None => <div>(Utils.str(msg))</div>
     | Some(activities) => {
+      Js.log("filtered programs are:\n");
+      Js.log(filtered_programs);
         let displayed_activities =
           switch (filtered_programs) {
           | None => activities
@@ -31,7 +33,10 @@ let make = (~activities=?, ~filtered_programs=?, ~msg="Could not load data", _ch
 
         {ReasonReact.array(
           Array.map(
-            (activity: Activities.t) => <ActivityRow activity=activity />,
+            (activity: Activities.t) => <ActivityRow 
+              key=activity.activity_name
+              activity=activity 
+            />,
             displayed_activities
           )
         )}

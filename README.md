@@ -1,3 +1,11 @@
+# TO DO
+* One load from JSON/API - don't get go back to end point since data isn't changing that frequently
+* 
+
+
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
