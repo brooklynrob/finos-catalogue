@@ -1,24 +1,48 @@
 open Programs;
 
-let component = ReasonReact.statelessComponent("Filter");
+type state = list(Programs.t);
 
-let make = (~program_list, _children) => {
+type action = 
+  | Toggle_program(Programs.t)
+
+let component = ReasonReact.reducerComponent("Filter");
+
+let make = (~programs, ~activities, _children) => {
   ...component, /* spread the template's other defaults into here  */
-  render: _self => {
+  reducer: (action,_state) =>
+    switch (action) {
+    | Toggle_program(program) =>
+      ReasonReact.Update(programs)
+  },
+
+  initialState: () => {
+    programs
+  },
+
+  render: self => {
     <div>
+      <div>
       (
         List.map(
           program =>
             <ProgramItem
               
               program
+              onToggle=(_event => self.send(Toggle_program(program)))
               
             />,
-          program_list
+          programs
         )
         |> Array.of_list
         |> ReasonReact.array
       )
-    </div>;
+      </div>
+      <div>
+        <ActivityTable
+          activities=activities
+          filtered_programs=Programs.filtered_programs_short_list_names(programs)
+        />
+      </div>
+    </div>
   },
 };

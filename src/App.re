@@ -5,7 +5,7 @@
 type state = 
   | Loading
   | Error
-  | Loaded(Activities.activities);
+  | Loaded(Activities.activities, list(Programs.t));
 
 type action =
   | ActivitiesFetch
@@ -37,7 +37,11 @@ let make = (~program_list_to_filter=?,_children) => {
             )
         ),
       )
-    | ActivitiesFetched(activities) => ReasonReact.Update(Loaded(activities))
+    | ActivitiesFetched(activities) => {
+        /* start initial filter with all programs */
+        let initial_programs_list = Programs.create_program_list(activities);
+        ReasonReact.Update(Loaded(activities, initial_programs_list))
+      }
     | ActivitiesFailedToFetch => ReasonReact.Update(Error)
     },
   didMount: self => self.send(ActivitiesFetch),
@@ -46,18 +50,19 @@ let make = (~program_list_to_filter=?,_children) => {
     switch self.state {
       | Loading => {<div><ActivityTable msg="Loading Data" /></div>}
       | Error => <div><ActivityTable msg="Error. Could not load data." /></div>
-      | Loaded(activities) => 
-          let all_programs_list = Programs.create_program_list(activities);
-          let filtered_programs_list = 
+      | Loaded(activities, programs) => 
+          /* let filtered_programs_list = 
             switch (program_list_to_filter) {
-              | None => all_programs_list
+              /* If program_list_to_filter is None, send all programs to table */
+              | None => programs
               | Some(program_list_to_filter) => program_list_to_filter
             };
+          */
           <div>
-            <div><Filter program_list=all_programs_list /></div>
-            <div><ActivityTable
-              activities=activities
-              filtered_programs=Programs.programs_short_list_names(filtered_programs_list)
+            <div>
+              <Filter
+                programs=programs
+                activities=activities
               />
             </div>
           </div>
