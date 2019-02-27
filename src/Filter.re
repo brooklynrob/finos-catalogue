@@ -38,27 +38,48 @@ let make = (~programs, ~activities, _children) => {
 
   render: ({send,state}) => {
     <div>
-      <div>
-      (
-        List.map(
-          program =>
-            <ProgramItem
-              key=program.program_short_name
-              program
-              onToggle=(event => send(Toggle_program(program)))
-              
-            />,
-          state
-        )
-        |> Array.of_list
-        |> ReasonReact.array
-      )
-      </div>
-      <div>
-        <ActivityTable
-          activities=activities
-          filtered_programs=Programs.filtered_programs_short_list_names(state)
-        />
+      <nav className="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+        <a className="navbar-brand col-sm-3 col-md-2 mr-0" href="#">(Utils.str("FINOS"))</a>
+        
+          <ul className="navbar-nav px-3">
+          <li className="nav-item text-nowrap">
+            <a className="nav-link" href="#">(Utils.str("Sign out"))</a>
+          </li>
+        </ul>
+      </nav>
+
+    <div className="container-fluid">
+      <div className="row">
+        <nav className="col-md-2 d-none d-md-block bg-light sidebar">
+          <div className="sidebar-sticky">
+            
+            <ul className="nav flex-column">
+              (
+                List.map(
+                  program =>
+                    <ProgramItem
+                      key=program.program_short_name
+                      program
+                      onToggle=(event => send(Toggle_program(program)))
+                      
+                    />,
+                  state
+                )
+                |> Array.of_list
+                |> ReasonReact.array
+              )
+              </ul>
+            </div>
+          </nav>
+
+          <div className="chartjs-size-monitor">
+            <ActivityTable
+              activities=activities
+              filtered_programs=Programs.filtered_programs_short_list_names(state)
+            />
+          </div>
+        
+        </div>
       </div>
     </div>
   },

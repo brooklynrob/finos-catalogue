@@ -10,7 +10,7 @@ let make = (~program, ~onToggle, _children) => {
     Js.log(program.checked);
     Js.log("program is ...");
     Js.log(program); */
-    <div className = "view">
+    <li className = "nav-item">
       <input
         className="toggle"
         type_="checkbox"
@@ -20,6 +20,6 @@ let make = (~program, ~onToggle, _children) => {
       <label>
         (Utils.str(program.program_short_name))
       </label>
-    </div>
+    </li>
   }
 };
