@@ -1,13 +1,13 @@
 {
   "main.css": "/finos-catalogue/static/css/main.90c099bb.chunk.css",
-  "main.js": "/finos-catalogue/static/js/main.a9d0c7f7.chunk.js",
-  "main.js.map": "/finos-catalogue/static/js/main.a9d0c7f7.chunk.js.map",
+  "main.js": "/finos-catalogue/static/js/main.6a616835.chunk.js",
+  "main.js.map": "/finos-catalogue/static/js/main.6a616835.chunk.js.map",
   "static/js/1.76aa52f1.chunk.js": "/finos-catalogue/static/js/1.76aa52f1.chunk.js",
   "static/js/1.76aa52f1.chunk.js.map": "/finos-catalogue/static/js/1.76aa52f1.chunk.js.map",
   "runtime~main.js": "/finos-catalogue/static/js/runtime~main.54a78dd3.js",
   "runtime~main.js.map": "/finos-catalogue/static/js/runtime~main.54a78dd3.js.map",
   "static/css/main.90c099bb.chunk.css.map": "/finos-catalogue/static/css/main.90c099bb.chunk.css.map",
   "index.html": "/finos-catalogue/index.html",
-  "precache-manifest.cd31369d3472ae0875f1b101fbd73100.js": "/finos-catalogue/precache-manifest.cd31369d3472ae0875f1b101fbd73100.js",
+  "precache-manifest.f1527655ac0b3f410ca89705880604e8.js": "/finos-catalogue/precache-manifest.f1527655ac0b3f410ca89705880604e8.js",
   "service-worker.js": "/finos-catalogue/service-worker.js"
 }

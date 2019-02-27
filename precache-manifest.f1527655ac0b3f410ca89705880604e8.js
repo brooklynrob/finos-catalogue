@@ -4,19 +4,19 @@ self.__precacheManifest = [
     "url": "/finos-catalogue/static/js/runtime~main.54a78dd3.js"
   },
   {
-    "revision": "a9d0c7f770f4d010ad12",
-    "url": "/finos-catalogue/static/js/main.a9d0c7f7.chunk.js"
+    "revision": "6a616835564755397b34",
+    "url": "/finos-catalogue/static/js/main.6a616835.chunk.js"
   },
   {
     "revision": "76aa52f1d9b998d19279",
     "url": "/finos-catalogue/static/js/1.76aa52f1.chunk.js"
   },
   {
-    "revision": "a9d0c7f770f4d010ad12",
+    "revision": "6a616835564755397b34",
     "url": "/finos-catalogue/static/css/main.90c099bb.chunk.css"
   },
   {
-    "revision": "b7b4e0b815a38efdd138054c5001412f",
+    "revision": "e0dfcbfc2a3cb312a0df372401661fe4",
     "url": "/finos-catalogue/index.html"
   }
 ];
